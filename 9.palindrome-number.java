@@ -49,18 +49,14 @@ import java.util.ArrayList;
 class Solution {
     public boolean isPalindrome(int x) {
         if(x < 0) return false;
-        ArrayList<Integer> num = new ArrayList<Integer>();
-        while(x >= 0) {
-            num.add(x % 10);
+        int num = 0, index = 10;
+        while(num * index < x ) {
+            num = num * 10 + x % 10;
             x /= 10;
+            index *= 10;
         }
-        System.out.println("hello");
-        for(int i = 0; i < num.size() / 2; i++) {
-            if(num.get(i) != num.get(num.size() - i)) {
-                return false;
-            } 
-        }
-        return true;
+        if(num == x / (index / 10)) return true;
+        return false;
     }
 }
 
