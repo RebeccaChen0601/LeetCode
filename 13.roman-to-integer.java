@@ -92,8 +92,8 @@ class Solution {
         map.put("D", 500);
         map.put("M", 1000);
 
-        for(int i = 0; i + 1 < s.length(); i++) {
-            if(s.substring(i+1) != "" && map.get(s.substring(i, i+1)) < map.get(s.substring(i+1, i+2))){
+        for(int i = 0; i < s.length(); i++) {
+            if(s.substring(i+1).length() != 0 && map.get(s.substring(i, i+1)) < map.get(s.substring(i+1, i+2))){
                 ans += map.get(s.substring(i+1, i+2)) - map.get(s.substring(i, i+1)); 
                 i++;
             } else {
