@@ -40,7 +40,7 @@ import java.util.HashMap;
  */
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        Trie trie = new Trie(new Node(0));
+        Trie trie = new Trie();
         int index = 0;
         for(int i = 0; i < strs.length; i++) {
             trie.insertWord(strs[i], ++index);
@@ -51,25 +51,26 @@ class Solution {
 }
 class Trie {
     Node node;
-    Trie(Node node){
-        this.node = node;
+    Trie(){
+        node = new Node(0);
     }
     void insertWord(String word, int index) {
-        char [] chars = word.toCharArray();
-        for(int i = 0; i < chars.length; i++) {
-            if(node.index == index - 1){
-                node.map.put(chars[i], new Node(index));
+        Node curr = node;
+        for(char c : word.toCharArray()){
+            if (curr.index == index - 1){
+                curr.map.putIfAbsent(c, new Node(index));
             } else {
-                node.map.put(chars[i], null);
+                curr.map.put(c, null);
             }
+            curr = curr.map.get(c);
         }
     }
 
     String findPrefix(){
         String prefix = "";
-        while(node) {
-            prefix += node.map.keySet().toArray()[0];
-            node = node.map.get(node.map.keySet().toArray()[0]);
+        while(this.node != null) {
+            prefix += this.node.map.keySet().toArray()[0];
+            node = this.node.map.get(this.node.map.keySet().toArray()[0]);
         }
         return prefix;
     }
