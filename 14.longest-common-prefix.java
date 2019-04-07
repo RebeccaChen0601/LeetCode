@@ -52,35 +52,32 @@ class Solution {
 class Trie {
     Node node;
     Trie(){
-        node = new Node(0);
+        node = new Node('0');
     }
     void insertWord(String word, int index) {
         Node curr = node;
-        for(char c : word.toCharArray()){
-            if (curr.index == index - 1){
-                curr.map.putIfAbsent(c, new Node(index));
-            } else {
-                curr.map.put(c, null);
-            }
+        for(char c : word.toCharArray()){  
+            curr.map.putIfAbsent(c, new Node(c));
             curr = curr.map.get(c);
+            System.out.println("char:" + c);
         }
     }
 
     String findPrefix(){
         String prefix = "";
-        while(this.node != null) {
-            prefix += this.node.map.keySet().toArray()[0];
-            node = this.node.map.get(this.node.map.keySet().toArray()[0]);
+        Node cur = node;
+        while(cur.map.values().size() == 1) {
+            prefix += cur.c;
+            cur = cur.map.values().toArray()[0];
         }
-        return prefix;
+        return prefix.substring(1);
     }
 } 
 
 class Node {
     HashMap<Character, Node> map = new HashMap<Character, Node>();
-    int index;
-    Node(int index){
-        this.index = index;
+    char c;
+    Node(char c){
+        this.c = c;
     }
 }
-
