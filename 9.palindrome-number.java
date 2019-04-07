@@ -53,7 +53,6 @@ class Solution {
         int num = 0;
         while(x > num) {
             if(x % 10 == 0) num = num * 10;
-            // else if(num == 0 && x % 10 == 0) num = 1;
             else num = num * 10 + x % 10;
             x /= 10;
         }
