@@ -59,5 +59,18 @@ class Solution {
         if(num == x || (num / 10 == x && num / 10 != 0)) return true;
         return false;
     }
+
+    public boolean isPalindromeSolution(int x) {
+        if(x < 0 || (x != 0 && x % 10 == 0)) return false;
+        int num = 0;
+        while(x > num) {
+            num = num * 10 + x % 10;
+            x /= 10;
+        }
+        return (num == x || (num / 10 == x && num / 10 != 0));
+    }
+    // optimization: 
+    //      1. generalization: classify cases into main categories
+    //      2. Special cases: identify (un)neccessary special cases
 }
 
