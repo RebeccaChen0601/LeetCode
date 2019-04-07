@@ -40,31 +40,46 @@ import java.util.HashMap;
  */
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        String prefix = "";
+        Trie trie = new Trie(new Node(0));
         int index = 0;
-        boolean isPrefix = true;
-        String curr = "";
-        String model = strs[0].substring(index);
-        outerloop:
-        while(true) {
-            model = strs[0].substring(index);
-            for(int i = 1; i < strs.length; i++) {
-                if(strs[i].substring(index).length() == 0){
-                    break outerloop;
-                }
-                curr = strs[i].substring(index, index+1);
-                if(model != curr) {
-                    isPrefix = false;
-                    break;
-                } 
-            }
-            if(isPrefix) {
-                prefix += model;
-            }
-            index++;
+        for(int i = 0; i < strs.length; i++) {
+            trie.insertWord(strs[i], ++index);
         }
-        
+        return trie.findPrefix();
+    }
+   
+}
+class Trie {
+    Node node;
+    Trie(Node node){
+        this.node = node;
+    }
+    void insertWord(String word, int index) {
+        char [] chars = word.toCharArray();
+        for(int i = 0; i < chars.length; i++) {
+            if(node.index == index - 1){
+                node.map.put(chars[i], new Node(index));
+            } else {
+                node.map.put(chars[i], null);
+            }
+        }
+    }
+
+    String findPrefix(){
+        String prefix = "";
+        while(node) {
+            prefix += node.map.keySet().toArray()[0];
+            node = node.map.get(node.map.keySet().toArray()[0]);
+        }
         return prefix;
+    }
+} 
+
+class Node {
+    HashMap<Character, Node> map = new HashMap<Character, Node>();
+    int index;
+    Node(int index){
+        this.index = index;
     }
 }
 
