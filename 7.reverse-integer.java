@@ -45,22 +45,19 @@ import java.util.ArrayList;
  */
 class Solution {
     public int reverse(int x) {
-        int number = 0, index = 0;
-        ArrayList<Integer> num = new ArrayList<Integer>();
-        boolean isNeg = (x < 0) ? true : false;
-        x = isNeg ? -x : x;
-        while(x >= 0) {
-            num.add(x % 10);
-            x = x / 10; 
-            index++;
+        int number = 0, inc = 0;
+        while(x != 0) {
+            inc = x % 10;
+            if (((Integer.MAX_VALUE / 10 < number || (Integer.MAX_VALUE / 10 == number && inc > 7)) && x > 0) || ((Integer.MIN_VALUE / 10 > number || (Integer.MAX_VALUE / 10 == number &&  inc < -8)) && x < 0 )) {
+                return 0;
+            }
+            number = number * 10 + inc;
+            x = x / 10;
         }
-        for(int i = 0; i < index; i++) {
-            number += num.get(i) * (int)Math.pow(10, index - i - 1);
-        }
-        number = isNeg ? -number : number;
         return number;
     }
 }
+
 
 
 
