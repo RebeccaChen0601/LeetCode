@@ -47,7 +47,7 @@ class Solution {
             System.out.println("i: " + i + " k: " + k + " j: " + j);
             ans = nums[i] + nums[k] + nums [j];
             if(ans > 0){
-                if (k + 1 < j && nums[j - 1] != nums[j]) {
+                if (k + 1 < j && j!= nums.length -1) {
                     j--;
                     while(k + 1 < j && nums[j + 1] == nums[j]) j--; 
                     continue;
@@ -60,7 +60,7 @@ class Solution {
                 list.add(intList);
             }     
             if(i + 1 == k && k + 1 == j) break;
-            if(k + 1 < j){
+            if(k + 1 < j ){
                k++;
                while (k + 1 < j && nums[k] == nums[k-1]) k++;
             } else if(i + 1 < k) {
@@ -76,3 +76,4 @@ class Solution {
         return list;
     }
 }
+
