@@ -37,26 +37,25 @@ import java.util.Arrays;
 
 class Solution {
 
-public List<List<Integer>> threeSum(int[] nums) {
-    List<List<Integer>> list = new ArrayList<>();
-    Arrays.sort(nums);
-    for(int i = 0; i < nums.length - 2; i++) {
-        if(i==0 || nums[i] == nums[i - 1]){
-            int lo = i+1,hi=nums.length-1, ans = 0;
-            while(lo < hi){
-                ans = nums[lo] + nums[hi] + nums[i];
-                if(ans == 0){
-                    list.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
-                    while(lo < hi && nums[lo] == nums[lo+1]) lo++;
-                    while(lo < hi && nums[hi] == nums[hi-1]) hi--;
-                    lo++; hi--;
-                } else if(ans < 0) lo++;
-                else hi--;
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> list = new LinkedList<>();
+        for(int i = 0; i < nums.length - 2; i++) {
+            if(i==0 || nums[i] != nums[i - 1]){
+                int lo = i+1,hi=nums.length-1, sum = 0 - nums[i];
+                while(lo < hi){
+                    if(nums[lo] + nums[hi] == sum){
+                        list.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
+                        while(lo < hi && nums[lo] == nums[lo+1]) lo++;
+                        while(lo < hi && nums[hi] == nums[hi-1]) hi--;
+                        lo++; hi--;
+                    } else if(nums[lo] + nums[hi] < sum) lo++;
+                    else hi--;
+                }
             }
         }
+        return list;
     }
-    return list;
-}
     public List<List<Integer>> threeSumFail(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
         if (nums == null || nums.length == 0 || (nums.length < 3)) {
