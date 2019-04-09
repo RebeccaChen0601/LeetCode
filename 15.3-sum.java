@@ -49,7 +49,7 @@ class Solution {
             if(ans > 0){
                 if (k + 1 < j) {
                     j--;
-                    while(nums[j + 1] == nums[j]) j--; 
+                    while(j >= 0 && nums[j + 1] == nums[j]) j--; 
                     continue;
                 }
             } else if(ans == 0) {
@@ -62,11 +62,11 @@ class Solution {
             if(i + 1 == k && k + 1 == j) break;
             if(k + 1 < j ){
                k++;
-               while (nums[k] == nums[k-1]) k++;
+               while (k < nums.length - 1 && nums[k] == nums[k-1]) k++;
             } else if(i + 1 < k) {
                 i++;
                 k = i+1;
-                while(nums[i - 1] == nums[i]) {
+                while(i < nums.length - 1 && nums[i - 1] == nums[i]) {
                     i++;
                     k = i+1;
                 }
@@ -75,5 +75,4 @@ class Solution {
         return list;
     }
 }
-
 
