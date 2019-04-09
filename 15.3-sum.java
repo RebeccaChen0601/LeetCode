@@ -47,9 +47,9 @@ class Solution {
             System.out.println("i: " + i + " k: " + k + " j: " + j);
             ans = nums[i] + nums[k] + nums [j];
             if(ans > 0){
-                if (k + 1 < j && j!= nums.length -1) {
+                if (k + 1 < j) {
                     j--;
-                    while(k + 1 < j && nums[j + 1] == nums[j]) j--; 
+                    while(nums[j + 1] == nums[j]) j--; 
                     continue;
                 }
             } else if(ans == 0) {
@@ -62,18 +62,18 @@ class Solution {
             if(i + 1 == k && k + 1 == j) break;
             if(k + 1 < j ){
                k++;
-               while (k + 1 < j && nums[k] == nums[k-1]) k++;
+               while (nums[k] == nums[k-1]) k++;
             } else if(i + 1 < k) {
                 i++;
                 k = i+1;
-                while(i + 1 < k && nums[i - 1] == nums[i]) {
+                while(nums[i - 1] == nums[i]) {
                     i++;
                     k = i+1;
                 }
             } else break;
-            continue;
         }
         return list;
     }
 }
+
 
