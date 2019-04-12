@@ -84,12 +84,14 @@
 class Solution {
     public boolean isMatch(String s, String p) {
         boolean [][] dp = new boolean[s.length()+1][p.length()+1];
+        //tricky: reserve a space for the first match check: 留头
         dp[s.length()][p.length()] = true;
         for(int i = s.length(); i>= 0; i--) {
             for(int j = p.length() - 1; j >= 0; j--) {
-                boolean first_match = s.charAt(i) == p.charAt(j) || p.charAt(j) == '.';
+                boolean first_match = i < s.length() && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.');
                 if(j + 1 < p.length() && p.charAt(j+1)=='*'){
                     dp[i][j] = dp[i][j+2] || first_match && dp[i+1][j];
+                    //tricky: 当
                 } else {
                     dp[i][j] = first_match && dp[i+1][j+1];
                 }
