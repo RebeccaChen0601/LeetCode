@@ -2,8 +2,6 @@ import java.util.Stack;
 
 import javax.swing.tree.TreeNode;
 
-import sun.invoke.empty.Empty;
-
 /*
  * @lc app=leetcode id=98 lang=java
  *
@@ -64,18 +62,18 @@ import sun.invoke.empty.Empty;
  * }
  */
 class Solution {
-        public boolean isValidBSTCurrentTreeOnly(TreeNode root) {
-            if(root == null) return true;
-            if(root.left != null && root.left.val >= root.val || root.right != null && root.right.val <= root.val) {
-                return false;
-            } 
-            return isValidBST(root.left) && isValidBST(root.right);
-            // 如果只管当前tree的order是正确的，如果全部order都要follow的话就不对了
-        }
+        // public boolean isValidBSTCurrentTreeOnly(TreeNode root) {
+        //     if(root == null) return true;
+        //     if(root.left != null && root.left.val >= root.val || root.right != null && root.right.val <= root.val) {
+        //         return false;
+        //     } 
+        //     return isValidBST(root.left) && isValidBST(root.right);
+        //     // 如果只管当前tree的order是正确的，如果全部order都要follow的话就不对了
+        // }
 
         public boolean isValidBST(TreeNode root) {
             Stack<TreeNode> nodes = new Stack();
-            int inOrder = Double.MIN_VALUE;
+            double inOrder = Double.MIN_VALUE;
             while(!nodes.isEmpty() || root != null){
                 while(root != null){
                     nodes.push(root);
@@ -88,6 +86,21 @@ class Solution {
                 // root.right如果是null，循环继续但是不进入小循环，直接pop出来的其实是上层node，帮助实现左上右顺序
                 //           如果不是，大小循环进入，到右边node的最左，然后此时的inorder比较则是又右边的最左和循环前的上层比较，实现右边永远比左边小
             }
+        }
+
+        public int kthSmallest(TreeNode root, int k) {
+            Stack<TreeNode> nodes = new Stack();
+            while( !nodes.isEmpty() || root != null) {
+                while(root != null){
+                    nodes.push(root);
+                    root = root.left;
+                }
+                root = nodes.pop();
+                k--;
+                if(k == 0) break;
+                root = root.right;
+            }
+            return root.val;
         }
 }
 
