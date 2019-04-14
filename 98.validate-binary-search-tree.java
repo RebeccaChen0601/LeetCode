@@ -102,5 +102,33 @@ class Solution {
             }
             return root.val;
         }
+
+        public int sumOfLeftLeaves(TreeNode root) {
+            int res = 0;
+            if (root == null) return res;
+            Stack<TreeNode> stack = new Stack<>();        
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.right;
+                }
+                root = stack.pop();
+                root = root.left;
+                if (root != null && root.left == null && root.right == null) res += root.val;
+            }
+            return res;
+        }
+
+        // a c++ solution
+
+        // bool isValidBST(TreeNode* root, TreeNode* min=NULL, TreeNode* max=NULL) {
+        //     if (!root) return true;
+        //     if (min != NULL && root->val <= min->val) return false;
+        //     if (max != NULL && root->val >= max->val) return false;
+        //     return isValidBST(root->left, min, root) && isValidBST(root->right, root, max);
+        // }
+
+      
+
 }
 
