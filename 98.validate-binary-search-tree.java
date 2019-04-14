@@ -119,14 +119,14 @@ class Solution {
             return res;
         }
 
-        // a c++ solution
-
-        // bool isValidBST(TreeNode* root, TreeNode* min=NULL, TreeNode* max=NULL) {
-        //     if (!root) return true;
-        //     if (min != NULL && root->val <= min->val) return false;
-        //     if (max != NULL && root->val >= max->val) return false;
-        //     return isValidBST(root->left, min, root) && isValidBST(root->right, root, max);
-        // }
+        // a concise solution, start with isValidBSTConsise(root, null, null)
+        
+        bool isValidBSTConsise(TreeNode root, TreeNode min, TreeNode max) {
+            if (root == null) return true;
+            if (min != null && root.val <= min.val) return false;
+            if (max != null && root.val >= max.val) return false;
+            return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+        }
 
       
 
