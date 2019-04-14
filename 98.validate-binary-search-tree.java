@@ -88,6 +88,15 @@ class Solution {
             }
         }
 
+        // a concise solution, start with isValidBSTConsise(root, null, null)
+
+        bool isValidBSTConsise(TreeNode root, TreeNode min, TreeNode max) {
+            if (root == null) return true;
+            if (min != null && root.val <= min.val) return false;
+            if (max != null && root.val >= max.val) return false;
+            return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+        }
+
         public int kthSmallest(TreeNode root, int k) {
             Stack<TreeNode> nodes = new Stack();
             while( !nodes.isEmpty() || root != null) {
@@ -119,14 +128,7 @@ class Solution {
             return res;
         }
 
-        // a concise solution, start with isValidBSTConsise(root, null, null)
-        
-        bool isValidBSTConsise(TreeNode root, TreeNode min, TreeNode max) {
-            if (root == null) return true;
-            if (min != null && root.val <= min.val) return false;
-            if (max != null && root.val >= max.val) return false;
-            return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
-        }
+
 
       
 
