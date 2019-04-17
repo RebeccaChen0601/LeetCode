@@ -40,9 +40,7 @@ class Solution {
     public int maxArea(int[] height) {
         int front = 0, back = height.length - 1, maxArea = 0;
         while(front < back){
-            if(height[front] * height[back] > maxArea){
-                maxArea = Math.max(maxArea, Math.min(height[front],height[back]) * (back - front));
-            }
+            maxArea = Math.max(maxArea, Math.min(height[front],height[back]) * (back - front));
             if(height[front] > height[back]) front++;
             else back--;
         }
