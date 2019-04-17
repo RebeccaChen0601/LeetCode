@@ -38,6 +38,7 @@
  */
 class Solution {
     public int maxArea(int[] height) {
+        // 避免brutal force的简单方法： 看哪一种情况逻辑上是不可能有最优路径的
         int front = 0, back = height.length - 1, maxArea = 0;
         while(front < back){
             maxArea = Math.max(maxArea, Math.min(height[front],height[back]) * (back - front));
