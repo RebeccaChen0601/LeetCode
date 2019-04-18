@@ -50,7 +50,7 @@ class Solution {
     List<String> output = new ArrayList<String>();
 
     public List<String> letterCombinations(String digits) {
-        if(digits.length()!=0) backTrack("", digits);
+        if(digits.length() != 0) backTrack("", digits);
         return output;
     }
 
@@ -63,5 +63,6 @@ class Solution {
             }
         }  
     }
+    //思路：for loop + recursion：多条路线发展 
 }
 
