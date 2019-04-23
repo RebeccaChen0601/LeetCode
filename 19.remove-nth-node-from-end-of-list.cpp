@@ -54,9 +54,13 @@ public:
             curr = curr->next;
             ahead = ahead->next;
         }
-        ListNode* temp = curr->next;
-        curr->next = curr->next->next;
-        free(temp);
+        if(curr->next){
+            curr->next = curr->next->next;
+        } else {
+            curr->next = nullptr;
+        }
+        
+
         return head;
     }
 };
