@@ -39,20 +39,24 @@
 //         ListNode *next;
 //         ListNode(int x) : val(x), next(NULL) {}
 //   };
+#include <stdlib.h> 
 
 class Solution {
     //做题要举一反三，这题没相当完全因为没有通过找中间node题目发散思维
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        Node* curr = head;
-        Node* ahead = head;
+        ListNode* curr = head;
+        ListNode* ahead = head;
         for(int i = 0; i < n; i++){
             ahead = ahead->next;
         }
-        while(ahead) {
+        while(ahead->next) {
             curr = curr->next;
             ahead = ahead->next;
         }
-        return curr;
+        ListNode* temp = curr->next;
+        curr->next = curr->next->next;
+        free(temp);
+        return head;
     }
 };
