@@ -44,7 +44,7 @@
 class Solution {
     //做题要举一反三，这题没相当完全因为没有通过找中间node题目发散思维
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
+    ListNode* removeNthFromEndStandard(ListNode* head, int n) {
         ListNode * first = new ListNode(0);
         //细节技巧，用一个dummy node来避免offbyone
         first->next = head;
