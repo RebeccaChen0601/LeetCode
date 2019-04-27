@@ -119,5 +119,22 @@ class Solution {
         }
         return res;
     }
+    
+    public int myAtoiStandard(String str) {
+    if (str.trim().isEmpty()) return 0;    
+    str = str.trim();
+    int sign = 1, base = 0, i = 0;
+   
+    if (str.charAt(i) == '-' || str.charAt(i) == '+')
+        sign = str.charAt(i++) == '-' ? -1 : 1;
+    
+    while (i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+        // -21 47 48 36 48 to 21 47 48 36 47
+        if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE / 10 && str.charAt(i) - '0' > 7)) {
+            return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+        base = 10 * base + (str.charAt(i++) - '0');
+    }
+    return base * sign;
 }
-
+}
