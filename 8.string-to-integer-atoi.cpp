@@ -84,7 +84,7 @@
  * 
  */
 class Solution {
-    public int myAtoi(String str) {
+    public int myAtoiOriginal(String str) {
         int res = 0;
         boolean isNeg = false;
         if(str.length() < 1) return 0; 
@@ -120,7 +120,7 @@ class Solution {
         return res;
     }
     
-    public int myAtoiStandard(String str) {
+    public int myAtoi(String str) {
     if (str.trim().isEmpty()) return 0;    
     str = str.trim();
     int sign = 1, base = 0, i = 0;
