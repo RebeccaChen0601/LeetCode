@@ -39,8 +39,8 @@
  */
 class Solution {
     public int search(int[] nums, int target) {
-        int left = 0, right = nums.length - 1, mid = 0;
-        if(target < nums[left] && target > nums[right]) return -1;
+        int left = 0, right = nums.length - 1, mid = -1;
+        if(nums.length < 1 || (target < nums[left] && target > nums[right])) return -1;
         int pivot = findPivot(nums, left, right);
         System.out.println(pivot);
         while(left < right){
@@ -59,6 +59,7 @@ class Solution {
                 left = mid;
             }
         }
+        if(nums[left] == target) return 0;
         return mid;
     }
 
