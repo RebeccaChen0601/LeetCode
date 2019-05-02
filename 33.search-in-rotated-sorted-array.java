@@ -42,17 +42,20 @@ class Solution {
         int left = 0, right = nums.length - 1, mid = 0;
         if(target < nums[left] && target > nums[right]) return -1;
         int pivot = findPivot(nums, left, right);
+        System.out.println(pivot);
         while(left < right){
             mid = (left + right) / 2;
             if(target == nums[mid]) {
                 return mid;
-            } else if(target < nums[mid] && target >= a[0]){
+            } else if(target < nums[mid] && target >= nums[0]){
                 right = mid;
-            } else if(target < nums[mid] && target < a[0]){
+            } else if(target < nums[mid] && target < nums[0] && left < pivot){
                 left = pivot + 1;
-            } else if(target > nums[mid] && target >= a[0]){
+            } else if(target < nums[mid] && target < nums[0] && left >= pivot){
+                right = mid;
+            } else if(target > nums[mid] && target >= nums[0]){
                 right = pivot;
-            } else if(target > nums[mid] && target < a[0]){
+            } else if(target > nums[mid] && target < nums[0]){
                 left = mid;
             }
         }
