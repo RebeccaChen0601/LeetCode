@@ -29,7 +29,31 @@
  */
 class Solution {
     public void nextPermutation(int[] nums) {
-        
+        int index = nums.length  - 1;
+        while(index - 1 >= 0 && nums[index - 1] >= nums[index]){
+            index--;
+        }
+        if(index - 1 >= 0){
+            int greater = 0;
+            for(int i = nums.length - 1; i > index - 1; i--) {
+                if(nums[i] > nums[index - 1]){
+                    greater = i; 
+                    break;
+                }
+            }
+            swap(nums, greater, index - 1);
+        }
+        int a = index, b = nums.length - 1;
+            while (a < b) {
+                swap(nums, a, b);
+                a++;
+                b--;
+            }
     }
+    void swap(int [] nums, int a, int b){
+        int temp = nums[b];
+        nums[b] = nums[a];
+        nums[a] = temp;
+    }   
 }
 

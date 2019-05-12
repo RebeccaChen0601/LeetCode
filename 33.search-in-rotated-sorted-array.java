@@ -53,6 +53,7 @@ class Solution {
                 left = pivot + 1;
             } else if(target < nums[mid] && target < nums[0] && left >= pivot){
                 right = mid;
+                System.out.println(right);
             } else if(target > nums[mid] && target >= nums[0]){
                 right = pivot;
             } else if(target > nums[mid] && target < nums[0]){
