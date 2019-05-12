@@ -39,43 +39,34 @@
  */
 class Solution {
     public int search(int[] nums, int target) {
-        int left = 0, right = nums.length - 1, mid = -1;
+        int left = 0, right = nums.length - 1, mid = 0;
         if(nums.length < 1 || (target < nums[left] && target > nums[right])) return -1;
         int pivot = findPivot(nums, left, right);
-        System.out.println(pivot);
-        while(left < right){
+        while(left <= right){
             mid = (left + right) / 2;
-            if(target == nums[mid]) {
-                return mid;
-            } else if(target < nums[mid] && target >= nums[0]){
-                right = mid;
-            } else if(target < nums[mid] && target < nums[0] && left < pivot){
-                left = pivot + 1;
-            } else if(target < nums[mid] && target < nums[0] && left >= pivot){
-                right = mid;
-                System.out.println(right);
-            } else if(target > nums[mid] && target >= nums[0]){
-                right = pivot;
-            } else if(target > nums[mid] && target < nums[0]){
-                left = mid;
+            if(target == nums[(mid + pivot) % nums.length]){
+                return (mid + pivot) % nums.length;
+            } else if(target < nums[(mid + pivot) % nums.length]){
+                right = mid - 1;
+            } else if(target > nums[(mid + pivot) % nums.length]){
+                left = mid + 1;
             }
         }
-        if(nums[left] == target) return 0;
-        return mid;
+        if(nums.length == 1 && target == nums[mid]) return 0;
+        return -1;
     }
 
     int findPivot(int[] nums, int left, int right){
         int mid = 0;
-        while(left < right) {
+        while(left < right && nums[left] > nums[right]) {
             mid = (right + left) / 2;
-            if(mid + 1 < nums.length && nums[mid] > nums[mid + 1]) return mid;
-            if(nums[mid] > nums[left]){
-                left = mid;
-            } else if(nums[mid] < nums[left]){
+            if(nums[mid] > nums[right]){
+                left = mid + 1;
+            } else {
                 right = mid;
-            }
+            } 
         }
-        return mid;
+        return left;
     }
 }
 
