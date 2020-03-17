@@ -20,5 +20,10 @@ class Solution:
                 right -= 1
             else:
                 index += 1
+
+
+
+
+
         
 
