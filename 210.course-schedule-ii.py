@@ -20,13 +20,14 @@ class Solution:
             if first not in in_degree:
                 in_degree[first] = 0
             if first in mapping[second]:
+                if second in mapping[first]:
+                    return []
                 continue
             all_elem.add(first)
             all_elem.add(second)
             in_degree[first] += 1
             mapping[second].add(first)
 
-        print(all_elem)
         order = []
         if numCourses > len(all_elem):
             for outlier in range(numCourses):
