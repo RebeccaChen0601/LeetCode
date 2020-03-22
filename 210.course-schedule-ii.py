@@ -8,25 +8,32 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         if len(prerequisites) == 0:
-            return True
+            return range(numCourses)
         
         mapping = {}
         in_degree = {}
         all_elem = set()
     
         for first, second in prerequisites:
-            if first not in mapping:
-                mapping[first] = set()
-            if second not in in_degree:
-                in_degree[second] = 0
+            if second not in mapping:
+                mapping[second] = set()
+            if first not in in_degree:
+                in_degree[first] = 0
+            if first in mapping[second]:
+                continue
             all_elem.add(first)
             all_elem.add(second)
-            in_degree[second] += 1
-            mapping[first].add(second)
+            in_degree[first] += 1
+            mapping[second].add(first)
 
+        print(all_elem)
         order = []
+        if numCourses > len(all_elem):
+            for outlier in range(numCourses):
+                 if outlier not in all_elem:
+                    order.append(outlier)
         
-        start_node = [first for first in mapping.keys() if first not in in_degree]
+        start_node = [second for second in mapping.keys() if second not in in_degree]
         queue = collections.deque(start_node)
 
         while queue:
@@ -39,7 +46,8 @@ class Solution:
                 if in_degree[neighbor] == 0:
                     queue.append(neighbor)
         
-        
-        return True
+        if len(order) == numCourses:
+            return order
+        return []
 # @lc code=end
 
