@@ -6,7 +6,7 @@
 
 # @lc code=start
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
+    def longestPalindrome2(self, s: str) -> str:
         if len(s) == 0:
             return ""
         longleft, longright, longest = 0, 0, 0
@@ -24,6 +24,33 @@ class Solution:
         while left >= 0 and right < len(s) and s[left] == s[right]:
             left, right = left - 1, right + 1
         return left + 1, right - 1, right - left - 1 
+
+    # DP Solution
+    def longestPalindrome(self, s: str) -> str:
+        if not s:
+            return ""
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        res = ""
+        for length in range(1, n+1):
+            print("length:", length)
+            for start in range(0, n):
+                end = start + length - 1
+                
+                if end >= n:
+                    break
+
+                if length == 1:
+                    dp[start][end] = True
+                elif length == 2:
+                    dp[start][end] = s[start] == s[end]
+                else:
+                    dp[start][end] = s[start] == s[end] and dp[start + 1][end - 1]
+                
+                # the last iteration is the longest
+                if dp[start][end]:
+                    res = s[start:end+1]
+        return res
         
 # @lc code=end
 
