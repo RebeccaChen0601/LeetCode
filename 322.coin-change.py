@@ -30,8 +30,8 @@ class Solution:
 
         ### method 2
 
-        dp = [amount + 1] * (amount + 1)
-        dp[0] = 0
+        dp = [amount + 1] * (amount + 1)  # 赋值最大值给不合适的以便于做min
+        dp[0] = 0 #刚好凑齐整数给最小值0的base case
         
         for i in range(amount+1):
             for coin in coins:
