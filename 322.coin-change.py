@@ -7,24 +7,38 @@
 # @lc code=start
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        memo = {}
-        def dp(n):
-            if n in memo: return memo[n]
-            if n == 0: return 0
-            if n < 0: return -1
+        ### method 1
 
-            res = float('inf')
+        # memo = {}
+        # def dp(n):
+        #     if n in memo: return memo[n]
+        #     if n == 0: return 0
+        #     if n < 0: return -1
 
-            for coin in coins:
-                dp_res = dp(n - coin)
-                if dp_res == -1: continue
-                res = min(res, dp_res + 1)
+        #     res = float('inf')
+
+        #     for coin in coins:
+        #         dp_res = dp(n - coin)
+        #         if dp_res == -1: continue
+        #         res = min(res, dp_res + 1)
             
-            memo[n] = res if res != float('inf') else -1
-            return memo[n]
+        #     memo[n] = res if res != float('inf') else -1
+        #     return memo[n]
 
 
-        return dp(amount)
+        # return dp(amount)
+
+        ### method 2
+
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
         
+        for i in range(amount+1):
+            for coin in coins:
+                if i - coin < 0: continue
+                dp[i] = min(dp[i - coin]  + 1, dp[i])
+        return dp[amount] if dp[amount] != amount + 1 else -1
+ 
+                
 # @lc code=end
 

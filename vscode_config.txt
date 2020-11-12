@@ -1,0 +1,6 @@
+
+try(){
+    send();
+} catch(Exception e) {
+    System.err.println(e.toString());
+}

@@ -14,7 +14,7 @@ class Solution:
             left1, right1, length1 = self.centerPalindrome(s, i, i + 1)
             left2, right2, length2 = self.centerPalindrome(s, i - 1, i + 1)
             left, right, length = (left1, right1, length1) if length1 > length2 else (left2, right2, length2)
-            print(left, right, length)
+            # print(left, right, length)
             if length > longest:
                 longest = length
                 longleft, longright = left, right
