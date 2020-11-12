@@ -1,4 +1,4 @@
-#
+ #
 # @lc app=leetcode id=46 lang=python3
 #
 # [46] Permutations
