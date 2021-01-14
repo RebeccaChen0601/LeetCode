@@ -17,11 +17,9 @@ class Solution:
 
         for i in range(len(grid)):
             for j in range(len(grid[i])):
-                if grid[i][j] and (i, j) not in visited:
+                if grid[i][j] == '1' and (i, j) not in visited:
                     self.bfs(visited, grid, i, j)
                     numOfIslands += 1
-                    print("sdf")
-
 
         return numOfIslands
 
@@ -43,10 +41,10 @@ class Solution:
         if not (0 <= x < len(grid) and 0 <= y < len(grid[0])):
             return False
         
-        if (x, y) not in visited:
+        if (x, y) in visited:
             return False
 
-        return grid[x][y]
+        return grid[x][y] == '1'
 
 
         
