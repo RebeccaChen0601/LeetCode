@@ -26,16 +26,18 @@ class Codec:
         
         index = 0
 
+        # index用于keep track， 因为这个题不能pop出来node
         while index < len(queue):    
             if queue[index] is not None:
                 queue.append(queue[index].left)
                 queue.append(queue[index].right)
             index += 1
-        while queue[-1] is None:
+
+        # 把最后一层末尾多余的null全部pop掉
+        while queue[-1] is None: 
             queue.pop()
         return '[%s]'%','.join( [str(node.val) if node is not None else 'null' for node in queue])
 
-        
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -60,9 +62,11 @@ class Codec:
                     queue[index].left = node
                 else:
                     queue[index].right = node
+                # 不要忘了放进queue来
                 queue.append(node)
             if not isLeft:
                 index += 1
+            # 先左后右交换放进来
             isLeft = not isLeft
 
         return root
