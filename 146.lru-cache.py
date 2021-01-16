@@ -46,7 +46,7 @@ class LRUCache:
             node = self.map[key]
             # remove LRU
             self.dll.removeNode(node)
-            # add the new node to MRU
+            # add the node to MRU
             self.dll.insertNode(node, self.dll.tail)
             return self.map[key].val
         else:
