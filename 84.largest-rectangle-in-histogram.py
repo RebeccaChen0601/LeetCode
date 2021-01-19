@@ -24,6 +24,16 @@ class Solution:
             
         return maxArea
 
-        
+        # stack = [-1]
+        # maxArea = 0
+
+        # for i in range(len(heights)):
+        #     while heights[i] <= heights[stack[-1]] and stack[-1] != -1:
+        #         maxArea = max(maxArea, (i - stack[-1] - 1) *  heights[stack.pop()])
+        #     stack.append(i)
+        # while stack[-1] != -1: 
+        #     maxArea = max(maxArea, (len(heights)  - stack[-1] - 1) *  heights[stack.pop()])
+            
+        # return maxArea
 # @lc code=end
 
