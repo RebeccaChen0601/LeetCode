@@ -27,6 +27,7 @@ class Solution:
         if queue[0] in deadends:
             return -1
         visited = set()
+        deadends = set(deadends)
         steps = 0
 
         while queue:
