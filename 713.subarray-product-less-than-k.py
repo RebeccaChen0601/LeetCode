@@ -14,9 +14,9 @@ class Solution:
             product *= nums[right]
             while left <= right and product >= k:
                 product /= nums[left]
-                left += 1      
+                left += 1   
+            count += (right - left + 1)
             right += 1   
-            count += (right - left)
         return count
         
         
