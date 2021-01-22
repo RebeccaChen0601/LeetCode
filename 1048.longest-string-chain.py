@@ -7,6 +7,7 @@
 # @lc code=start
 class Solution:
     def longestStrChain(self, words: List[str]) -> int:
+        # 必须sort 因为dp需要从先把最短word的insertion次数fill好，然后逐渐增加长度
         words.sort(key=len)
 
         # dp代表目前到这个形态经历了多少次insertion
