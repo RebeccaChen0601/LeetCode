@@ -18,8 +18,7 @@ class UndergroundSystem:
 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
         start_station, start_t = self.checkInInfo.pop(id)
-        self.tripInfo[(start_station, stationName)][0] +
-        = (t - start_t)
+        self.tripInfo[(start_station, stationName)][0] += (t - start_t)
         self.tripInfo[(start_station, stationName)][1] += 1 
 
     def getAverageTime(self, startStation: str, endStation: str) -> float:
